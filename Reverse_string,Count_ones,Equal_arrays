@@ -1,0 +1,51 @@
+def reverse_string(s):
+    """
+    Reverse a string without using built-in reverse.
+    Time: O(n), Space: O(1) if in-place
+    """
+    s = list(s) # strings are immutable
+    left, right = 0, len(s) - 1
+    while left < right:
+        s[left], s[right] = s[right], s[left]
+        left += 1
+        right -= 1
+    return ''.join(s)
+
+# Example
+print(reverse_string("chintu"))
+def count_ones(arr):
+    """
+    Count total number of 1s in array.
+    Time: O(n), Space: O(1)
+    """
+    count = 0
+    for num in arr:
+        if num == 1:
+            count += 1
+    return count
+
+# Example
+print(count_ones([0,1,1,0,1])) # 3
+def are_arrays_equal(arr1, arr2):
+    """
+    Check if two arrays have same elements with same frequency.
+    Order doesn't matter.
+    Time: O(n), Space: O(n)
+    """
+    if len(arr1)!= len(arr2):
+        return False
+
+    freq = {}
+    for num in arr1:
+        freq[num] = freq.get(num, 0) + 1
+
+    for num in arr2:
+        if num not in freq or freq[num] == 0:
+            return False
+        freq[num] -= 1
+
+    return True
+
+# Example
+print(are_arrays_equal([1,2,5,4,0], [2,4,5,0,1])) # True
+print(are_arrays_equal([1,2,5], [2,4,15])) # False
